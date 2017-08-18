@@ -104,10 +104,8 @@ button:active {
 }
 
 button:focus {
-    outline: none;
-    /*color: #33F*/
+    outline: none
 }
-
 
 table {
     border-collapse: collapse;

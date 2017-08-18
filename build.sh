@@ -1,11 +1,7 @@
 #!/bin/bash
 
-dir=~/desktop/extension
+extension=${PWD##*/}
+dir=~/desktop/$extension
 
-cp -r src $dir
-
-cd $dir
-
+cd src
 zip -r $dir.zip .
-
-# google-chrome --pack-extension=$dir
