@@ -48,6 +48,14 @@ body {
     font: 13px droid sans, segoe ui, ubuntu, arial, sans serif
 }
 
+#main {
+    display: block
+}
+
+#json {
+    display: none
+}
+
 #loading {
     position: absolute;
     top: 0;
@@ -80,10 +88,14 @@ body {
     border: 1px solid #B2FF59
 }
 
+#buttons {
+    margin-left: 35px;
+    float: left
+}
+
 button {
     padding: 4px 18px;
     margin: 2px 0 10px 10px;
-    float: right;
     box-shadow: inset 0px 1px 0px 0px #ffffff;
     background: linear-gradient(to bottom, #ffffff 5%, #f6f6f6 100%);
     border-radius: 3px;
@@ -167,4 +179,36 @@ p.sessionstorage {
 
 p.error {
     color: #d50000
+}
+
+#back {
+    position: fixed;
+    top: 2px;
+    right: 2px
+}
+
+#code {
+    margin-top: 30px;
+    white-space: pre-wrap;
+    word-wrap: break-word
+}
+
+.string {
+    color: #DF0101
+}
+
+.number {
+    color: #0B610B
+}
+
+.boolean {
+    color: #5F04B4
+}
+
+.null {
+    color: #FF8000
+}
+
+.key {
+    color: #0000FF
 }

@@ -1,6 +1,8 @@
 (function(window, document, $, chrome) {
 'use strict';
 
+var scrollPosition;
+
 function htmlEscape(str, noQuotes) {
     var map = [];
     map['&'] = '&amp;';
@@ -386,14 +388,8 @@ $('#table').on('click', 'td.td-icon', function() {
 
     else if (icon === 'open') {
         var $siblings = $this.siblings();
-        var $inputKey = $siblings.eq(0).find('input');
         var $inputValue = $siblings.eq(1).find('input');
-
-        var key = $inputKey.val();
         var value = $inputValue.val();
-
-        key = htmlEscape(key) || '&#65279;';
-
         var json = parseDeepJSON(value);
 
         if (typeof json === 'object') {
@@ -403,26 +399,22 @@ $('#table').on('click', 'td.td-icon', function() {
             value = htmlEscape(value);
         }
 
-        var html = '';
-        html += '<!DOCTYPE html>'
-        html += '<html><head><meta charset="UTF-8"><title>' + key + '</title>';
-        html += '<style>';
-        html += 'pre { font-size: 13px }';
-        html += '.string { color: #DF0101 }';
-        html += '.number { color: #0B610B }';
-        html += '.boolean { color: #5F04B4 }';
-        html += '.null { color: #FF8000 }';
-        html += '.key { color: #0000FF }';
-        html += '</style>';
-        html += '</head>';
-        html += '<body>';
-        html += '<pre>' + value + '</pre>';
-        html += '</body>';
-        html += '</html>';
+        scrollPosition = document.body.scrollTop;
 
-        var win = window.open('about:blank');
-        win.document.write(html);
+        $('#main').hide();
+        $('#code').html(value);
+        $('#json').show();
+
+        scroll(0, 0);
     }
+});
+
+$('#back').click(function(e) {
+    $('#json').hide();
+    $('#code').html('');
+    $('#main').show();
+
+    scroll(0, scrollPosition);
 });
 
 })(window, document, jQuery, chrome);
