@@ -34,6 +34,7 @@ switch (msg.what) {
 
     case 'get':
         result = getStorage();
+        console.table(result);
         break;
 
     case 'remove':
