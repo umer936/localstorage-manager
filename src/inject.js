@@ -5,9 +5,25 @@ function getStorage() {
         return;
     }
 
+    var specialKeys = [
+        'length', 'key', 'getItem',
+        'setItem', 'removeItem', 'clear'
+    ];
+
     for (var i in storage) {
-        obj[i] = storage.getItem(i);
+        if (storage.hasOwnProperty(i)) {
+            obj[i] = storage.getItem(i);
+        }
     }
+
+    var item;
+    for (var i in specialKeys) {
+        item = storage.getItem(specialKeys[i]);
+        if (item !== null) {
+            obj[specialKeys[i]] = item;
+        }
+    }
+
     return obj;
 }
 
@@ -46,7 +62,9 @@ switch (msg.what) {
         try {
             var obj = JSON.parse(msg.json);
             for (var i in obj) {
-                storage.setItem(i, obj[i]);
+                if (obj.hasOwnProperty(i)) {
+                    storage.setItem(i, obj[i]);
+                }
             }
         }
         catch(e) {}
