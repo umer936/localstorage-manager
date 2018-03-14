@@ -285,6 +285,7 @@ $('#download').click(function(e) {
                 return;
             }
 
+            /*
             var file = new Blob([response]);
             var a = document.createElement('a');
             a.href = window.URL.createObjectURL(file);
@@ -293,6 +294,22 @@ $('#download').click(function(e) {
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
+            */
+
+            var iframe = document.createElement('iframe');
+            iframe.style.display = 'none';
+            iframe.onload = function() {
+                var doc = this.contentDocument;
+                var file = new Blob([response]);
+                var a = doc.createElement('a');
+                a.href = window.URL.createObjectURL(file);
+                a.download = filename;
+                a.style.display = 'none';
+                doc.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+            };
+            document.body.appendChild(iframe);
 
             loading(false);
         });
