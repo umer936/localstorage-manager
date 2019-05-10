@@ -247,6 +247,7 @@ $('#clear').click(function(e) {
     });
 });
 
+    // TODO: Add import from file
 $('#import').click(function(e) {
     e.preventDefault();
 
